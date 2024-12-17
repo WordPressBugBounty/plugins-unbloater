@@ -3,10 +3,10 @@
 /**
  * Plugin Name:    Unbloater
  * Description:    Remove unnecessary code, nags and bloat from WordPress core and certain plugins.
- * Version:        1.6.2
+ * Version:        1.6.3
  * Author:         Christoph Rado
  * Author URI:     https://christophrado.de/
- * Tested up to:   6.5
+ * Tested up to:   6.7
  * Text Domain:    unbloater
  */
 

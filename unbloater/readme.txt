@@ -3,8 +3,8 @@ Contributors: christophrado
 Donate link: https://www.paypal.me/christophrado
 Tags: unbloat, bloat, clean, remove, notice
 Requires at least: 4.2
-Tested up to: 6.5
-Stable tag: 1.6.2
+Tested up to: 6.7
+Stable tag: 1.6.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -109,6 +109,9 @@ Probably not. This plugin is biased towards my personal needs, thus integrating 
 1. Plugin settings (see description for all available options)
 
 == Changelog ==
+
+= 1.6.3 =
+* Tested up to WP 6.7
 
 = 1.6.2 =
 * Tested up to WP 6.5
