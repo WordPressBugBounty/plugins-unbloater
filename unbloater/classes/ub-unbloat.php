@@ -322,6 +322,39 @@ class Unbloater_Unbloat {
 			add_action( 'admin_bar_menu', array( $this, 'yoast_seo_remove_admin_bar_item' ), 999 );
 		}
 		
+		/******************************************************************
+		********* WP ROCKET ***********************************************
+		******************************************************************/
+		
+		if( Unbloater_Helper::is_option_activated( 'wp_rocket_remove_admin_bar_item' ) ) {
+			add_action( 'admin_bar_menu', array( $this, 'wp_rocket_remove_admin_bar_item' ), PHP_INT_MAX );
+		}
+		
+		if( Unbloater_Helper::is_option_activated( 'wp_rocket_whitelabel_footprint' ) ) {
+			defined( 'WP_ROCKET_WHITE_LABEL_FOOTPRINT' ) || define( 'WP_ROCKET_WHITE_LABEL_FOOTPRINT', true );
+		}
+		
+		if( Unbloater_Helper::is_option_activated( 'wp_rocket_remove_imagify_media_library_ads' ) ) {
+			add_filter( 'option_plugin_family_dismiss_promote_imagify', '__return_true' );
+			add_filter( 'default_option_plugin_family_dismiss_promote_imagify', '__return_true', 10, 3 );
+		}
+		
+		if( Unbloater_Helper::is_option_activated( 'wp_rocket_remove_plugin_repository_ads' ) ) {
+			add_action( 'wp_rocket_loaded', array( $this, 'wp_rocket_remove_plugin_repository_ads' ) );
+		}
+		
+		/******************************************************************
+		********* REDIS CACHE *********************************************
+		******************************************************************/
+		
+		if( Unbloater_Helper::is_option_activated( 'redis_cache_remove_admin_bar_item' ) ) {
+			defined( 'WP_REDIS_DISABLE_ADMINBAR' ) || define( 'WP_REDIS_DISABLE_ADMINBAR', true );
+		}
+		
+		if( Unbloater_Helper::is_option_activated( 'redis_cache_remove_html_comment' ) ) {
+			defined( 'WP_REDIS_DISABLE_COMMENT' ) || define( 'WP_REDIS_DISABLE_COMMENT', true );
+		}
+		
 	}
 	
 	/******************************************************************
@@ -479,12 +512,34 @@ class Unbloater_Unbloat {
 	}
 	
 	/******************************************************************
-	********* WOOCOMMERCE *********************************************
+	********* YOAST SEO ***********************************************
 	******************************************************************/
 	
 	public function yoast_seo_remove_admin_bar_item() {
 		global $wp_admin_bar;
 		$wp_admin_bar->remove_menu( 'wpseo-menu' );
+	}
+	
+	/******************************************************************
+	********* WP ROCKET ***********************************************
+	******************************************************************/
+	
+	public function wp_rocket_remove_admin_bar_item() {
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_node( 'wp-rocket' );
+	}
+	
+	public function wp_rocket_remove_plugin_repository_ads() {
+		$rocket_container = apply_filters( 'rocket_container', null );
+		if( ! $rocket_container )
+			return;
+		$subscribers = array( 'plugin_subscriber', 'plugin_information_subscriber', 'plugins_subscriber' );
+		foreach( $subscribers as $id ) {
+			if( $rocket_container->has( $id ) ) {
+				remove_filter( 'plugins_api_result', array( $rocket_container->get( $id ), 'add_plugins_to_result' ), 11 );
+				break;
+			}
+		}
 	}
 	
 }

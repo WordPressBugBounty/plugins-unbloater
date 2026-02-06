@@ -657,6 +657,84 @@ class Unbloater_Settings {
 			
 		}
 		
+		/******************************************************************
+		********* WP ROCKET SECTION ***************************************
+		******************************************************************/
+		
+		if( Unbloater_Helper::is_plugin_active( 'wp-rocket/wp-rocket.php' ) ) {
+			
+			add_settings_section(
+				'unbloater_section_wp_rocket',
+				__( 'WP Rocket', 'unbloater' ),
+				array( $this, 'cb_settings_section_wp_rocket' ),
+				'unbloater'
+			);
+			
+			add_settings_field(
+				'wp_rocket_remove_admin_bar_item',
+				__( 'Admin Bar', 'unbloater' ),
+				array( $this, 'cb_setting_wp_rocket_remove_admin_bar_item' ),
+				'unbloater',
+				'unbloater_section_wp_rocket'
+			);
+			
+			add_settings_field(
+				'wp_rocket_whitelabel_footprint',
+				__( 'Whitelabel', 'unbloater' ),
+				array( $this, 'cb_setting_wp_rocket_whitelabel_footprint' ),
+				'unbloater',
+				'unbloater_section_wp_rocket'
+			);
+			
+			add_settings_field(
+				'wp_rocket_remove_imagify_media_library_ads',
+				__( 'Media Library ads', 'unbloater' ),
+				array( $this, 'cb_setting_wp_rocket_remove_imagify_media_library_ads' ),
+				'unbloater',
+				'unbloater_section_wp_rocket'
+			);
+			
+			add_settings_field(
+				'wp_rocket_remove_plugin_repository_ads',
+				__( 'Plugin repository ads', 'unbloater' ),
+				array( $this, 'cb_setting_wp_rocket_remove_plugin_repository_ads' ),
+				'unbloater',
+				'unbloater_section_wp_rocket'
+			);
+			
+		}
+		
+		/******************************************************************
+		********* REDIS CACHE SECTION *************************************
+		******************************************************************/
+		
+		if( Unbloater_Helper::is_plugin_active( 'redis-cache/redis-cache.php' ) ) {
+			
+			add_settings_section(
+				'unbloater_section_redis_cache',
+				__( 'Redis Cache', 'unbloater' ),
+				array( $this, 'cb_settings_section_redis_cache' ),
+				'unbloater'
+			);
+			
+			add_settings_field(
+				'redis_cache_remove_admin_bar_item',
+				__( 'Admin Bar', 'unbloater' ),
+				array( $this, 'cb_setting_redis_cache_remove_admin_bar_item' ),
+				'unbloater',
+				'unbloater_section_redis_cache'
+			);
+			
+			add_settings_field(
+				'redis_cache_remove_html_comment',
+				__( 'HTML Comment', 'unbloater' ),
+				array( $this, 'cb_setting_redis_cache_remove_html_comment' ),
+				'unbloater',
+				'unbloater_section_redis_cache'
+			);
+			
+		}
+		
 	}
 
 	/******************************************************************
@@ -1194,6 +1272,67 @@ class Unbloater_Settings {
 		$this->render_settings_field_checkbox(
 			'yoast_seo_remove_admin_bar_item',
 			__( 'Remove the Yoast SEO admin bar item', 'unbloater' )
+		);
+	}
+
+	/******************************************************************
+	********* WP ROCKET CALLBACKS *************************************
+	******************************************************************/
+
+	public function cb_settings_section_wp_rocket() {
+		echo '<p>' . sprintf( __( 'These settings are related to %s.', 'unbloater' ), '<a href="https://wp-rocket.me" target="_blank">WP Rocket</a>' ) . '</p>';
+	}
+	
+	public function cb_setting_wp_rocket_remove_admin_bar_item() {
+		$this->render_settings_field_checkbox(
+			'wp_rocket_remove_admin_bar_item',
+			__( 'Remove the WP Rocket admin bar item', 'unbloater' )
+		);
+	}
+	
+	public function cb_setting_wp_rocket_whitelabel_footprint() {
+		$this->render_settings_field_checkbox(
+			'wp_rocket_whitelabel_footprint',
+			__( 'Remove frontend WP Rocket footprint', 'unbloater' )
+		);
+	}
+	
+	public function cb_setting_wp_rocket_remove_imagify_media_library_ads() {
+		$this->render_settings_field_checkbox(
+			'wp_rocket_remove_imagify_media_library_ads',
+			__( 'Remove Imagify ads in the Media Library', 'unbloater' ),
+			__( 'WP Rocket adds Imagify ads to multiple Media Library contexts.', 'unbloater' )
+		);
+	}
+	
+	public function cb_setting_wp_rocket_remove_plugin_repository_ads() {
+		$this->render_settings_field_checkbox(
+			'wp_rocket_remove_plugin_repository_ads',
+			__( 'Remove plugin repository ads', 'unbloater' ),
+			__( 'WP Rocket adds multiple plugin ads to the Plugins section.', 'unbloater' )
+		);
+	}
+	
+	/******************************************************************
+	********* REDIS CACHE CALLBACKS ***********************************
+	******************************************************************/
+
+	public function cb_settings_section_redis_cache() {
+		echo '<p>' . sprintf( __( 'These settings are related to %s.', 'unbloater' ), '<a href="https://wordpress.org/plugins/redis-cache/" target="_blank">Redis Cache</a>' ) . '</p>';
+	}
+	
+	public function cb_setting_redis_cache_remove_admin_bar_item() {
+		$this->render_settings_field_checkbox(
+			'redis_cache_remove_admin_bar_item',
+			__( 'Remove the Redis Cache admin bar item', 'unbloater' )
+		);
+	}
+	
+	public function cb_setting_redis_cache_remove_html_comment() {
+		$this->render_settings_field_checkbox(
+			'redis_cache_remove_html_comment',
+			__( 'Remove the indicator in the site\'s HTML output', 'unbloater' ),
+			__( 'These are HTML comments that indicate the plugin\'s existence and usage.', 'unbloater' )
 		);
 	}
 	

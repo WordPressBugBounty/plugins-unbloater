@@ -184,6 +184,9 @@ class Unbloater_Admin {
 					$this->maybe_print_quicknav_item( 'searchwp/index.php', 'SearchWP', 'searchwp' );
 					$this->maybe_print_quicknav_item( 'autodescription/autodescription.php', 'The SEO Framework', 'autodescription' );
 					$this->maybe_print_quicknav_item( 'woocommerce/woocommerce.php', 'WooCommerce', 'woocommerce' );
+					$this->maybe_print_quicknav_item( 'wordpress-seo/wp-seo.php', 'Yoast SEO', 'yoast_seo' );
+					$this->maybe_print_quicknav_item( 'wp-rocket/wp-rocket.php', 'WP Rocket', 'wp_rocket' );
+					$this->maybe_print_quicknav_item( 'redis-cache/redis-cache.php', 'Redis Cache', 'redis_cache' );
 					?>
 				</p>
 			</nav>			

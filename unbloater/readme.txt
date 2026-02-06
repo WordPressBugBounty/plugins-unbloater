@@ -3,9 +3,9 @@ Contributors: christophrado
 Donate link: https://www.paypal.me/christophrado
 Tags: unbloat, bloat, clean, remove, notice
 Requires at least: 4.2
-Tested up to: 6.7
-Stable tag: 1.6.3
-Requires PHP: 5.6
+Tested up to: 6.9
+Stable tag: 1.6.4
+Requires PHP: 7.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -89,6 +89,10 @@ This plugin evolved out of my personal need to clean up sites for clients. The a
 * WooCommerce: Remove SkyVerge dashboard
 * Yoast SEO: Remove admin bar item
 * Yoast SEO: Remove plugin indicator
+* WP Rocket: Remove admin bar item
+* WP Rocket: Whitelabel footprint
+* WP Rocket: Remove Imagify ads
+* Redis Cache: Remove admin bar item
 
 Third party options will only be shown when the applicable plugin is installed and activated.
 
@@ -109,6 +113,13 @@ Probably not. This plugin is biased towards my personal needs, thus integrating 
 1. Plugin settings (see description for all available options)
 
 == Changelog ==
+
+= 1.6.4 =
+* Added: Remove WP Rocket admin bar item
+* Added: Remove WP Rocket footprint (in your source code)
+* Added: Remove Imagify ads (added by WP Rocket)
+* Added: Remove Redis Cache admin bar item
+* Tested up to WP 6.9
 
 = 1.6.3 =
 * Tested up to WP 6.7
