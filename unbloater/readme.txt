@@ -3,8 +3,8 @@ Contributors: christophrado
 Donate link: https://www.paypal.me/christophrado
 Tags: unbloat, bloat, clean, remove, notice
 Requires at least: 4.2
-Tested up to: 6.9
-Stable tag: 1.6.4
+Tested up to: 7.0
+Stable tag: 1.7.0
 Requires PHP: 7.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -33,6 +33,8 @@ This plugin evolved out of my personal need to clean up sites for clients. The a
 * Limit creation of Application Passwords to admins
 * Disable Application Passwords
 * Disable admin email confirmation screen
+* Remove Command Palette admin bar item
+* Disable Command Palette
 * Disable XML-RPC API
 * Remove WordPress 'W' admin bar item
 * Remove admin footer text
@@ -113,6 +115,11 @@ Probably not. This plugin is biased towards my personal needs, thus integrating 
 1. Plugin settings (see description for all available options)
 
 == Changelog ==
+
+= 1.7.0 =
+* Added: Remove Command Palette admin bar item
+* Added: Fully disable Command Palette
+* Tested up to WP 7.0
 
 = 1.6.4 =
 * Added: Remove WP Rocket admin bar item

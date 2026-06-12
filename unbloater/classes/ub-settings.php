@@ -141,6 +141,22 @@ class Unbloater_Settings {
 		}
 		
 		add_settings_field(
+			'remove_command_palette_admin_bar_item',
+			__( 'Command Palette', 'unbloater' ),
+			array( $this, 'cb_setting_remove_command_palette_admin_bar_item' ),
+			'unbloater',
+			'unbloater_section_core_backend'
+		);
+		
+		add_settings_field(
+			'disable_command_palette',
+			__( 'Command Palette', 'unbloater' ),
+			array( $this, 'cb_setting_disable_command_palette' ),
+			'unbloater',
+			'unbloater_section_core_backend'
+		);
+		
+		add_settings_field(
 			'disable_admin_email_confirmation',
 			__( 'Admin Email Confirmation', 'unbloater' ),
 			array( $this, 'cb_setting_disable_admin_email_confirmation' ),
@@ -830,6 +846,22 @@ class Unbloater_Settings {
 			'disable_application_passwords',
 			__( 'Disable Application Passwords completely', 'unbloater' ),
 			__( 'Enabling this option will overwrite the more granular options below.', 'unbloater' )
+		);
+	}
+	
+	public function cb_setting_remove_command_palette_admin_bar_item() {
+		$this->render_settings_field_checkbox(
+			'remove_command_palette_admin_bar_item',
+			__( 'Remove the Command Palette admin bar item', 'unbloater' ),
+			__( 'This option only removes the admin bar item and keeps the Command Palette available via keyboard shortcut.', 'unbloater' ),
+			Unbloater_Helper::is_option_activated( 'disable_command_palette' )
+		);
+	}
+	
+	public function cb_setting_disable_command_palette() {
+		$this->render_settings_field_checkbox(
+			'disable_command_palette',
+			__( 'Disable Command Palette completely', 'unbloater' )
 		);
 	}
 	

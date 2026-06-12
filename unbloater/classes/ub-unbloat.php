@@ -64,6 +64,14 @@ class Unbloater_Unbloat {
 			add_action( 'init', array( $this, 'disable_application_passwords' ) );
 		}
 		
+		if( Unbloater_Helper::is_option_activated( 'remove_command_palette_admin_bar_item' ) ) {
+			add_action( 'admin_bar_menu', array( $this, 'remove_command_palette_admin_bar_item' ), 999 );
+		}
+		
+		if( Unbloater_Helper::is_option_activated( 'disable_command_palette' ) ) {
+			add_action( 'init', array( $this, 'disable_command_palette' ) );
+		}
+		
 		if( Unbloater_Helper::is_option_activated( 'disable_admin_email_confirmation' ) ) {
 			add_filter( 'admin_email_check_interval', '__return_false' );
 		}
@@ -375,6 +383,15 @@ class Unbloater_Unbloat {
 		if( is_admin() && ! current_user_can( 'manage_options' ) ) {
 			add_filter( 'wp_is_application_passwords_available', '__return_false' );
 		}
+	}
+	
+	public function remove_command_palette_admin_bar_item() {
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu( 'command-palette' );
+	}
+	
+	public function disable_command_palette() {
+		remove_action( 'admin_enqueue_scripts', 'wp_enqueue_command_palette_assets' );
 	}
 	
 	public function disable_xmlrpc_headers( $headers ) {
